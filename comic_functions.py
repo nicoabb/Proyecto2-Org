@@ -2,6 +2,8 @@ from Comic import *
 from txt_functions import *
 import os
 from Serialaux import*
+from Titleaux import*
+
 
 def new_comic(comics):
     """
@@ -11,22 +13,22 @@ def new_comic(comics):
     """
     os.system('clear')
     title = input('Título: ')
-    while (len(title) >40):
+    while (len(title) > 40):
         print('El título debe contener menos de 40 caracteres')
         title = input('Título: ')
 
     serial = input('Serial: ')
     while not (len(serial) == 8) or (not serial.isnumeric()):
-        print('Ingreso inválido') 
+        print('Ingreso inválido')
         serial = input('Serial: ')
 
     price = input('Precio de venta: ')
-    while (not price.isnumeric()) or int(price) > 999 :
+    while (not price.isnumeric()) or int(price) > 999:
         print('Ingreso inválido')
         price = input('Precio de venta: ')
 
     stock = input('Stock disponible: ')
-    while (not stock.isnumeric()) or int(stock) > 99 :
+    while (not stock.isnumeric()) or int(stock) > 99:
         print('Ingreso inválido')
         price = input('Stock disponible: ')
 
@@ -39,10 +41,39 @@ def new_comic(comics):
 
     return comics
 
+
 def list_seriales(comics):
     seriales = []
     for i, comic in enumerate(comics):
         new_serial = Serialaux(comic.serial, i)
         seriales.append(new_serial)
-    
+
     return seriales
+
+
+def list_titles(comics):
+    titles = []
+    all_titles = []
+    for i, comic in enumerate(comics):
+        title_separado = comic.title.split(" ")
+        for j in title_separado:
+            new_title = Titleaux(j, i)
+            titles.append(new_title)
+            all_titles.append(j)
+        print(new_title.show_attributes)
+    print(all_titles)
+    return titles
+
+
+def list_all_titles(comics):
+    titles = []
+    all_titles = []
+    for i, comic in enumerate(comics):
+        title_separado = comic.title.split(" ")
+        for j in title_separado:
+            new_title = Titleaux(j, i)
+            titles.append(new_title)
+            all_titles.append(j)
+        print(new_title.show_attributes)
+    print(all_titles)
+    return all_titles

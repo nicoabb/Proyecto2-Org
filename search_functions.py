@@ -69,12 +69,12 @@ def busqueda_binaria_title(lista, x):
 
 def buscar_por_titulo(title, comics, titles, all_titles):
     contador = all_titles.count(title)
-    print(f'Contador: {contador}')
 
     # Si el contador es mayor que uno quiere decir que la palabra se repite.
     # Por ejemplo, si es Batman y Batman sale en mas de un titulo, entonces el contador va a ser mayor que 1
     if contador > 1:
-        # Hacer la busqueda mas de una vez, quitando, cada vez, el anterior que encontro
+        # Hacer la busqueda mas de una vez, quitando, cada vez, el anterior que encontro para no repetir
+        # Retorna una lista de comics
     else:
         # Hace la busqueda normal
         index = busqueda_binaria_title(titles, title)

@@ -19,7 +19,7 @@ def main():
     except:
         print('El archivo lista_comics.txt no existe')
 
-    # os.system('clear')
+    os.system('clear')
 
     while True:
         opcion = input(
@@ -40,6 +40,7 @@ def main():
 
         # Búsqueda de historieta por serial o consulta de palabras
         elif opcion == '2':
+            os.system('clear')
             # Dejo esto escrito aca para que lo vean, pero como lo vamos a usar varias veces, deberiamos convertirlo en una función que retorne el objeto de comic buscado
             option_two = input(
                 '[1] Buscar por serial \n[2] Buscar por título\n[3] Salir\n>>')
@@ -63,15 +64,19 @@ def main():
                 while not (len(t) <= 40):
                     print('Ingreso inválido')
                     t = input('Ingrese el título del comic que desea buscar: ')
-                # os.system('clear')
-                for i, j in enumerate(titles):
-                    j.show_attributes()
+                os.system('clear')
 
-                comic = buscar_por_titulo(t, comics, titles, all_titles)
                 # cuando convirtamos en funcion, aqui va return comic
-                if comic != None:
-                    comic.show_attributes()
-
+                comics_encontradas = buscar_por_titulo(
+                    t, comics, titles, all_titles)
+                if comics_encontradas != None:
+                    contador = all_titles.count(t)
+                    if contador > 1:
+                        for i in comics_encontradas:
+                            i.show_attributes()
+                        titles = list_titles(comics)
+                    else:
+                        comics_encontradas.show_attributes()
                 print('')
 
         # Comprar (siempre y cuando haya suficiente stock)

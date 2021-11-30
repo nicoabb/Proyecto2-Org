@@ -60,8 +60,6 @@ def list_titles(comics):
             new_title = Titleaux(j, i)
             titles.append(new_title)
             all_titles.append(j)
-        print(new_title.show_attributes)
-    print(all_titles)
     return titles
 
 
@@ -74,6 +72,4 @@ def list_all_titles(comics):
             new_title = Titleaux(j, i)
             titles.append(new_title)
             all_titles.append(j)
-        print(new_title.show_attributes)
-    print(all_titles)
     return all_titles

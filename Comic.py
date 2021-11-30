@@ -8,7 +8,7 @@ class Comic:
         self.deleted = False
 
     def show_attributes(self):
-        if self.deleted = False:
+        if self.deleted == False:
             print(
                 f'Serial: {self.serial} Título: {self.title} Precio: {self.price}$ Cantidad disponible: {self.stock}')
         else:
@@ -43,10 +43,6 @@ class Comic:
                 print('Compra cancelada')
 
     def delete(self):
-<<<<<<< Updated upstream
-        self.deleted = true
-        print(f'El cómic {self.title} ha sido eliminado')
-=======
 
         cont = input(f'¿Está seguro que desea eliminar {self.title}?\n [1] si [2] no\n>>')
         while (cont != '1' and cont != '2'):
@@ -58,4 +54,3 @@ class Comic:
             print(f'El cómic {self.title} ha sido eliminado')
         else:
             print('Operación cancelada')
->>>>>>> Stashed changes

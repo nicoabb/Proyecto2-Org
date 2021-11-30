@@ -55,10 +55,6 @@ def main():
 
                 os.system('clear')
                 comic = buscar_por_serial(int(s), comics, seriales)
-<<<<<<< Updated upstream
-                # cuando convirtamos en funcion, aqui va return comic
-=======
->>>>>>> Stashed changes
                 if comic != False:
                     comic.show_attributes()
 
@@ -148,14 +144,8 @@ def main():
                 sel = input('Serial: ')
 
             selected = buscar_por_serial(int(sel), comics, seriales)
-<<<<<<< Updated upstream
-            if selected != None:
-                q = input(
-                    'Introduzca la cantidad de unidades que desea comprar: ')
-=======
             if selected != False:
                 q = input('Introduzca la cantidad de unidades que desea comprar: ')
->>>>>>> Stashed changes
                 while not q.isnumeric():
                     print('Ingreso inválido')
                     q = input(
@@ -179,21 +169,11 @@ def main():
                 sel = input('Serial: ')
 
             selected = buscar_por_serial(int(sel), comics, seriales)
-<<<<<<< Updated upstream
-            if selected != None:
-                q = input(
-                    'Introduzca la cantidad de unidades que desea comprar: ')
-                while not q.isnumeric():
-                    print('Ingreso inválido')
-                    q = input(
-                        'Introduzca la cantidad de unidades que desea comprar: ')
-=======
             if selected != False:
                 q = input('Introduzca la cantidad de unidades que desea reabastecer: ')
                 while not q.isnumeric():
                     print('Ingreso inválido')
                     q = input('Introduzca la cantidad de unidades que desea reabastecer: ')
->>>>>>> Stashed changes
                 selected.add_stock(int(q))
             pass
 
@@ -202,14 +182,8 @@ def main():
             print('----------------------------COMICS-----------------------------')
             show_catalog(comics)
             print('---------------------------------------------------------------\n')
-<<<<<<< Updated upstream
-            sel = input(
-                'Introduzca el serial del cómic que desea reabastecer => ')
-            while (not len(sel) == 8) or (not sel.isnumeric()):
-=======
             sel = input('Introduzca el serial del cómic que desea eliminar => ')
             while (not len(sel) == 8) or (not sel.isnumeric() ):
->>>>>>> Stashed changes
                 if not len(sel) == 8:
                     print('La longitud del serial debe ser de 8 caracteres')
                 if not sel.isnumeric():
@@ -219,17 +193,7 @@ def main():
                 sel = input('Serial: ')
 
             selected = buscar_por_serial(int(sel), comics, seriales)
-<<<<<<< Updated upstream
-            if selected != None:
-                q = input(
-                    'Introduzca la cantidad de unidades que desea comprar: ')
-                while not q.isnumeric():
-                    print('Ingreso inválido')
-                    q = input(
-                        'Introduzca la cantidad de unidades que desea comprar: ')
-=======
             if selected != False:
->>>>>>> Stashed changes
                 selected.delete()
 
             comp = input('Desea utilizar el compactador?\n [1] Si [2] no\n>>')

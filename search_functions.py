@@ -6,9 +6,7 @@ def busqueda_binaria_serial(lista, x):
     # devuelve la posicion en la que se encuentra el serial o -1 si no existe
     # se puede acceder al serial como seriales[x]
 
-    arr = sorted(lista, key=lambda lista: lista.serial)
-    for a in arr:
-        print(f'{a.index}: {a.serial}')
+    arr = sorted(lista, key=lambda lista: int(lista.serial))
     low = 0
     high = len(arr) - 1
     mid = 0
@@ -17,10 +15,10 @@ def busqueda_binaria_serial(lista, x):
 
         mid = (high + low) // 2
 
-        if arr[mid].serial < x:
+        if int(arr[mid].serial) < x:
             low = mid + 1
 
-        elif arr[mid].serial > x:
+        elif int(arr[mid].serial) > x:
             high = mid - 1
 
         else:

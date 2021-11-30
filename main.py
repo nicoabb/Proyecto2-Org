@@ -56,7 +56,7 @@ def main():
 
                 os.system('clear')
                 comic = buscar_por_serial(int(s), comics, seriales)
-                # cuanco convirtamos en funcion, aqui va return comic
+                #cuando convirtamos en funcion, aqui va return comic
                 comic.show_attributes()
                 print('')
             elif option_two == '2':

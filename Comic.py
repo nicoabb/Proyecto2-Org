@@ -43,5 +43,19 @@ class Comic:
                 print('Compra cancelada')
 
     def delete(self):
+<<<<<<< Updated upstream
         self.deleted = true
         print(f'El cómic {self.title} ha sido eliminado')
+=======
+
+        cont = input(f'¿Está seguro que desea eliminar {self.title}?\n [1] si [2] no\n>>')
+        while (cont != '1' and cont != '2'):
+            print('Ingreso inválido')
+            cont = input(f'¿Está seguro que desea eliminar {self.title}?\n [1] si [2] no\n>>')
+
+        if cont == '1':
+            self.deleted = True
+            print(f'El cómic {self.title} ha sido eliminado')
+        else:
+            print('Operación cancelada')
+>>>>>>> Stashed changes

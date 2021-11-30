@@ -101,4 +101,5 @@ def compact(comics):
 
 def show_catalog(comics):
     for comic in comics:
-        comic.show_attributes()
+        if comic.deleted == False:
+            comic.show_attributes()

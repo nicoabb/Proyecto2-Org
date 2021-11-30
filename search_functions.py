@@ -35,7 +35,10 @@ def buscar_por_serial(serial, comics, seriales):
     comic_index = seriales[index].index
 
     comic = comics[comic_index]
-    return comic
+    if comic.deleted == False:
+        return comic
+    else:
+        return False
 
 
 def busqueda_binaria_title(lista, x):

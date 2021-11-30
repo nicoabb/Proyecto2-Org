@@ -33,7 +33,7 @@ def buscar_por_serial(serial, comics, seriales):
     index = busqueda_binaria_serial(seriales, serial)
     if(index == -1):
         print('El serial que ingresó no coincide con ningún comic')
-        return
+        return False
     comic_index = seriales[index].index
 
     comic = comics[comic_index]

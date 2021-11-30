@@ -57,8 +57,12 @@ def main():
                 os.system('clear')
                 comic = buscar_por_serial(int(s), comics, seriales)
                 #cuando convirtamos en funcion, aqui va return comic
-                comic.show_attributes()
+                if comic != False:
+                    comic.show_attributes()
                 print('')
+
+
+
             elif option_two == '2':
                 t = input('Ingrese el título del comic que desea buscar: ')
                 while not (len(t) <= 40):

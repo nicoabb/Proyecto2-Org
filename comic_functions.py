@@ -5,11 +5,22 @@ from Serialaux import*
 from Titleaux import*
 
 
+def check_serial(comics, serial):
+    """Recibe lista de comics y un serial y evuleve True si el serial ya está en la lista y False si no está
+    """
+    for comic in comics:
+        #print(comic.title)
+        if comic.serial == serial:
+            return True
+    
+    return False
+
+
 def new_comic(comics):
     """
-    Registra usuarios nuevos en la base de datos
-    Recibe: Lista de usuarios
-    Devuelve: Lista de usuarios con nuevo usuario registrado
+    Registra comics nuevos en la base de datos
+    Recibe: Lista de comics
+    Devuelve: Lista de comics con nuevo usuario registrado
     """
     os.system('clear')
     title = input('Título: ')
@@ -18,8 +29,14 @@ def new_comic(comics):
         title = input('Título: ')
 
     serial = input('Serial: ')
-    while not (len(serial) == 8) or (not serial.isnumeric()):
-        print('Ingreso inválido')
+    while (not len(serial) == 8) or (not serial.isnumeric() or (check_serial(comics, int(serial)))):
+        if not len(serial) == 8:
+            print('La longitud del serial debe ser de 8 caracteres')
+        if not serial.isnumeric():
+            print('El serial debe ser un valor numérico')
+        if check_serial(comics, serial):
+            print('Ya existe un cómic asignado para este serial') 
+        print('Ingreso inválido') 
         serial = input('Serial: ')
 
     price = input('Precio de venta: ')
@@ -30,7 +47,7 @@ def new_comic(comics):
     stock = input('Stock disponible: ')
     while (not stock.isnumeric()) or int(stock) > 99:
         print('Ingreso inválido')
-        price = input('Stock disponible: ')
+        stock = input('Stock disponible: ')
 
     new_comic = Comic(int(serial), title, int(price), int(stock))
     comics.append(new_comic)
@@ -73,3 +90,10 @@ def list_all_titles(comics):
             titles.append(new_title)
             all_titles.append(j)
     return all_titles
+
+def compact(comics):
+    for i, comic in enumerate(comics):
+        if comic.deleted == True:
+            comics.pop(i)
+            
+    return comics

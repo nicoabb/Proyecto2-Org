@@ -7,6 +7,8 @@ def busqueda_binaria_serial(lista, x):
     # se puede acceder al serial como seriales[x]
 
     arr = sorted(lista, key=lambda lista: lista.serial)
+    for a in arr:
+        print(f'{a.index}: {a.serial}')
     low = 0
     high = len(arr) - 1
     mid = 0
@@ -31,7 +33,7 @@ def buscar_por_serial(serial, comics, seriales):
     index = busqueda_binaria_serial(seriales, serial)
     if(index == -1):
         print('El serial que ingresó no coincide con ningún comic')
-        return
+        return False
     comic_index = seriales[index].index
 
     comic = comics[comic_index]

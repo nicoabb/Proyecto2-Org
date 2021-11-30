@@ -59,24 +59,74 @@ def main():
                 # cuanco convirtamos en funcion, aqui va return comic
                 comic.show_attributes()
                 print('')
-            elif option_two == '2':
-                t = input('Ingrese el título del comic que desea buscar: ')
-                while not (len(t) <= 40):
-                    print('Ingreso inválido')
-                    t = input('Ingrese el título del comic que desea buscar: ')
-                os.system('clear')
 
-                # cuando convirtamos en funcion, aqui va return comic
-                comics_encontradas = buscar_por_titulo(
-                    t, comics, titles, all_titles)
-                if comics_encontradas != None:
-                    contador = all_titles.count(t)
-                    if contador > 1:
-                        for i in comics_encontradas:
+            elif option_two == '2':
+                cant_palabras = input(
+                    '[1] Una palabra \n[2] Dos palabras\n>>')
+                while (cant_palabras != '1' and cant_palabras != '2'):
+                    print('Ingreso inválido')
+
+                if cant_palabras == '1':
+                    t = input('Ingrese el título del comic que desea buscar: ')
+                    print(len(t.split(" ")))
+                    while not (len(t) <= 40) and len(t.split(" ")) > 1:
+                        print('Ingreso inválido')
+                        t = input(
+                            'Ingrese el título del comic que desea buscar: ')
+                    # os.system('clear')
+                    comics_encontradas = buscar_por_titulo(
+                        t, comics, titles, all_titles)
+                    if comics_encontradas != None:
+                        contador = all_titles.count(t)
+                        if contador > 1:
+                            for i in comics_encontradas:
+                                i.show_attributes()
+                            titles = list_titles(comics)
+                        else:
+                            comics_encontradas.show_attributes()
+
+                else:
+
+                    t = input('Ingrese el título del comic que desea buscar: ')
+                    print(len(t.split(" ")))
+                    while not (len(t) <= 40) and len(t.split(" ")) > 2 and len(t.split(" ")) <= 1:
+                        print('Ingreso inválido')
+                        t = input(
+                            'Ingrese el título del comic que desea buscar: ')
+                    t_split = t.split(" ")
+
+                    print('Coincidencias palabra 1')
+                    list1 = buscar_por_titulo(
+                        t_split[0], comics, titles, all_titles)
+                    if list1 != None:
+                        contador = all_titles.count(t_split[0])
+                        if contador > 1:
+                            for j in list1:
+                                j.show_attributes()
+                            titles = list_titles(comics)
+                        else:
+                            list1.show_attributes()
+
+                    print('\nCoincidencias palabra 2')
+                    list2 = buscar_por_titulo(
+                        t_split[1], comics, titles, all_titles)
+                    if list2 != None:
+                        contador = all_titles.count(t_split[1])
+                        if contador > 1:
+                            for j in list2:
+                                j.show_attributes()
+                            titles = list_titles(comics)
+                        else:
+                            list2.show_attributes()
+
+                    try:
+                        interseccion = list(set(list1) & set(list2))
+                        print('\nCruce de listas')
+                        for i in interseccion:
                             i.show_attributes()
-                        titles = list_titles(comics)
-                    else:
-                        comics_encontradas.show_attributes()
+                    except:
+                        print('\nNo hubo coincidencias.')
+
                 print('')
 
         # Comprar (siempre y cuando haya suficiente stock)

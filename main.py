@@ -82,8 +82,9 @@ def main():
                     else:
                         comics_encontradas.show_attributes()
                 print('')
-
         # Comprar (siempre y cuando haya suficiente stock)
+
+
         elif opcion == '3':
             # copiar el codigo de la busqueda y luego usar el método comic.buy(cantidad)
             pass

@@ -7,7 +7,6 @@ from Titleaux import*
 
 def check_serial(comics, serial):
     """Recibe lista de comics y un serial y evuleve True si el serial ya está en la lista y False si no está
-    
     """
     for comic in comics:
         #print(comic.title)
@@ -91,3 +90,10 @@ def list_all_titles(comics):
             titles.append(new_title)
             all_titles.append(j)
     return all_titles
+
+def compact(comics):
+    for i, comic in enumerate(comics):
+        if comic.deleted == True:
+            comics.pop(i)
+            
+    return comics

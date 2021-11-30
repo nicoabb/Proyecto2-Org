@@ -56,16 +56,11 @@ def main():
 
                 os.system('clear')
                 comic = buscar_por_serial(int(s), comics, seriales)
-                #cuando convirtamos en funcion, aqui va return comic
+                # cuando convirtamos en funcion, aqui va return comic
                 if comic != False:
                     comic.show_attributes()
                 print('')
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 90e49b5fd6603ae68ca0c8a5b1734aa162535369
             elif option_two == '2':
                 cant_palabras = input(
                     '[1] Una palabra \n[2] Dos palabras\n>>')
@@ -135,7 +130,6 @@ def main():
 
                 print('')
         # Comprar (siempre y cuando haya suficiente stock)
-
 
         elif opcion == '3':
             # copiar el codigo de la busqueda y luego usar el método comic.buy(cantidad)

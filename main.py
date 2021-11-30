@@ -59,13 +59,7 @@ def main():
                 #cuando convirtamos en funcion, aqui va return comic
                 if comic != False:
                     comic.show_attributes()
-                print('')
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 90e49b5fd6603ae68ca0c8a5b1734aa162535369
             elif option_two == '2':
                 cant_palabras = input(
                     '[1] Una palabra \n[2] Dos palabras\n>>')
@@ -73,12 +67,11 @@ def main():
                     print('Ingreso inválido')
 
                 if cant_palabras == '1':
-                    t = input('Ingrese el título del comic que desea buscar: ')
-                    print(len(t.split(" ")))
+                    t = input('Ingrese el título del comic que desea buscar: ').upper()
                     while not (len(t) <= 40) and len(t.split(" ")) > 1:
                         print('Ingreso inválido')
                         t = input(
-                            'Ingrese el título del comic que desea buscar: ')
+                            'Ingrese el título del comic que desea buscar: ').upper()
                     # os.system('clear')
                     comics_encontradas = buscar_por_titulo(
                         t, comics, titles, all_titles)
@@ -93,15 +86,15 @@ def main():
 
                 else:
 
-                    t = input('Ingrese el título del comic que desea buscar: ')
+                    t = input('Ingrese el título del comic que desea buscar: ').upper()
                     print(len(t.split(" ")))
                     while not (len(t) <= 40) and len(t.split(" ")) > 2 and len(t.split(" ")) <= 1:
                         print('Ingreso inválido')
                         t = input(
-                            'Ingrese el título del comic que desea buscar: ')
+                            'Ingrese el título del comic que desea buscar: ').upper()
                     t_split = t.split(" ")
 
-                    print('Coincidencias palabra 1')
+                    print(f'Coincidencias palabra para {t_split[0]}')
                     list1 = buscar_por_titulo(
                         t_split[0], comics, titles, all_titles)
                     if list1 != None:
@@ -113,7 +106,7 @@ def main():
                         else:
                             list1.show_attributes()
 
-                    print('\nCoincidencias palabra 2')
+                    print(f'\nCoincidencias palabra {t_split[1]}')
                     list2 = buscar_por_titulo(
                         t_split[1], comics, titles, all_titles)
                     if list2 != None:
@@ -137,21 +130,94 @@ def main():
         # Comprar (siempre y cuando haya suficiente stock)
 
 
+
+
         elif opcion == '3':
+            print('---------------------------CATALOGO----------------------------')
+            show_catalog(comics)
+            print('---------------------------------------------------------------\n')
+            sel = input('Introduzca el serial del cómic que desea comprar => ')
+            while (not len(sel) == 8) or (not sel.isnumeric() ):
+                if not len(sel) == 8:
+                    print('La longitud del serial debe ser de 8 caracteres')
+                if not sel.isnumeric():
+                    print('El serial debe ser un valor numérico')
+                if check_serial(comics, sel):
+                    print('Ya existe un cómic asignado para este serial') 
+                sel = input('Serial: ')
+            
+            selected = buscar_por_serial(int(sel), comics, seriales)
+            if selected != None:
+                q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                while not q.isnumeric():
+                    print('Ingreso inválido')
+                    q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                selected.buy(int(q))
             # copiar el codigo de la busqueda y luego usar el método comic.buy(cantidad)
-            pass
+
 
         # Reabastecimiento
         elif opcion == '4':
+            print('----------------------------COMICS-----------------------------')
+            show_catalog(comics)
+            print('---------------------------------------------------------------\n')
+            sel = input('Introduzca el serial del cómic que desea reabastecer => ')
+            while (not len(sel) == 8) or (not sel.isnumeric() ):
+                if not len(sel) == 8:
+                    print('La longitud del serial debe ser de 8 caracteres')
+                if not sel.isnumeric():
+                    print('El serial debe ser un valor numérico')
+                if check_serial(comics, sel):
+                    print('Ya existe un cómic asignado para este serial') 
+                sel = input('Serial: ')
+            
+            selected = buscar_por_serial(int(sel), comics, seriales)
+            if selected != None:
+                q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                while not q.isnumeric():
+                    print('Ingreso inválido')
+                    q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                selected.add_stock(int(q))
             # copiar el codigo de la busqueda y luego usar el método comic.addstock(cantidad)
             pass
 
         # Eliminación
         elif opcion == '5':
-            # copiar el codigo de la busqueda y luego usar el método comic.delete()
-            pass
-            # Falta agregar el compactador, que borra de la lista todo lo que está eliminado lógicamente
+            print('----------------------------COMICS-----------------------------')
+            show_catalog(comics)
+            print('---------------------------------------------------------------\n')
+            sel = input('Introduzca el serial del cómic que desea reabastecer => ')
+            while (not len(sel) == 8) or (not sel.isnumeric() ):
+                if not len(sel) == 8:
+                    print('La longitud del serial debe ser de 8 caracteres')
+                if not sel.isnumeric():
+                    print('El serial debe ser un valor numérico')
+                if check_serial(comics, sel):
+                    print('Ya existe un cómic asignado para este serial') 
+                sel = input('Serial: ')
+            
+            selected = buscar_por_serial(int(sel), comics, seriales)
+            if selected != None:
+                q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                while not q.isnumeric():
+                    print('Ingreso inválido')
+                    q = input('Introduzca la cantidad de unidades que desea comprar: ')
+                selected.delete()
 
+            # copiar el codigo de la busqueda y luego usar el método comic.delete()
+            comp = input('Desea utilizar el compactador?\n [1] Si [2] no\n>>')
+            while (comp!='1') and (comp!='2'):
+                print('Ingreso invalido')
+                comp = input('Desea utilizar el compactador?\n [1] Si [2] no\n>>')
+            if comp == '1':
+                comics = compact(comics)
+                seriales = list_seriales(comics)
+                titles = list_titles(comics)
+                cargar_datos_txt('lista_comics.txt', comics)
+                all_titles = list_all_titles(comics)
+            else:
+                pass
+            
         # Salir
         elif opcion == '6':
             os.system('clear')

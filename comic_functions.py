@@ -29,7 +29,7 @@ def new_comic(comics):
         title = input('Título: ')
 
     serial = input('Serial: ')
-    while (not len(serial) == 8) or (not serial.isnumeric() or (check_serial(comics, int(serial)))):
+    while (not len(serial) == 8) or (not serial.isnumeric() or (check_serial(comics, serial))):
         if not len(serial) == 8:
             print('La longitud del serial debe ser de 8 caracteres')
         if not serial.isnumeric():
@@ -49,7 +49,7 @@ def new_comic(comics):
         print('Ingreso inválido')
         stock = input('Stock disponible: ')
 
-    new_comic = Comic(int(serial), title, int(price), int(stock))
+    new_comic = Comic(serial, title.upper(), int(price), int(stock))
     comics.append(new_comic)
     os.system('clear')
     print('Se ha añadido el siguiente cómic a la base de datos:')
@@ -92,8 +92,13 @@ def list_all_titles(comics):
     return all_titles
 
 def compact(comics):
-    for i, comic in enumerate(comics):
-        if comic.deleted == True:
-            comics.pop(i)
+    compacted = []
+    for comic in comics:
+        if comic.deleted == False:
+            compacted.append(comic)
             
-    return comics
+    return compacted
+
+def show_catalog(comics):
+    for comic in comics:
+        comic.show_attributes()

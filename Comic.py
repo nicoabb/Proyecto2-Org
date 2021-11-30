@@ -25,10 +25,10 @@ class Comic:
             
         else:
             print(f'El total de su compra es de {self.price*quantity}$')
-            cont = input('¿Está seguro que desea continuar con su compra?\n [1] si [2] no')
-            while (cont != '1' or cont != '2'):
+            cont = input('¿Está seguro que desea continuar con su compra?\n [1] si [2] no\n>>')
+            while (cont != '1' and cont != '2'):
                 print('Ingreso inválido')
-                cont = input('¿Está seguro que desea continuar con su compra?\n [1] si [2] no')
+                cont = input('¿Está seguro que desea continuar con su compra?\n [1] si [2] no\n>>')
 
             if cont == '1':
                 self.stock = self.stock - quantity          

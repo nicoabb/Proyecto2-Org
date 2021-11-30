@@ -118,7 +118,7 @@ def main():
                                 j.show_attributes()
                             titles = list_titles(comics)
                         else:
-                            list2.show_attributes()
+                            list2[0].show_attributes()
 
                     try:
                         interseccion = list(set(list1) & set(list2))

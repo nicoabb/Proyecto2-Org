@@ -80,12 +80,12 @@ def buscar_por_titulo(title, comics, titles, all_titles):
         [comics_list]: [Una lista con los comics a los que hace referencia la palabra ingresada por el usuario]
     """
     contador = all_titles.count(title)
+    comics_lists = []
 
     # Si el contador es mayor que uno quiere decir que la palabra se repite.
     # Por ejemplo, si es Batman y Batman sale en mas de un titulo, entonces el contador va a ser mayor que 1
     if contador > 1:
         counter = 0
-        comics_lists = []
         while counter < contador:
             index = busqueda_binaria_title(titles, title)
             comic = comics[index]
@@ -105,7 +105,8 @@ def buscar_por_titulo(title, comics, titles, all_titles):
         return
 
     comic = comics[index]
-    return comic
+    comics_lists.append(comic)
+    return comics_lists
 
 
 def pop(titles, title, index):
